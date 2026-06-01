@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <!-- ========================================== -->
+    <!-- 1. CONFIGURAÇÕES BÁSICAS E SEO AVANÇADO    -->
+    <!-- ========================================== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>💠 Orbis Factor | Agência de IA e Pós-Produção</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💠</text></svg>">
+
+    <meta name="description" content="A Orbis Factor é uma agência de luxo especializada em pós-produção audiovisual, inteligência artificial, design estático e desenvolvimento Web/App.">
+    <meta name="keywords" content="Pós-produção, Inteligência Artificial, Agência de Marketing, Orbis Factor, Design UI/UX, Web Design, Panfletos Digitais, Edição de Vídeo">
+    <meta name="author" content="Orbis Factor">
+    <meta name="robots" content="index, follow">
+
+    <!-- ========================================== -->
+    <!-- 2. IMPORTAÇÃO DE FERRAMENTAS E FONTES      -->
+    <!-- ========================================== -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        luxury: '#050505', 
+                        orbisBlue: '#38BDF8' 
+                    },
+                    fontFamily: {
+                        sans:['Inter', 'sans-serif'], 
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS DO AOS (Animações) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Alpine.js (Controle dos Modais e Menus) -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- ========================================== -->
+    <!-- 3. ESTILOS CSS ADICIONAIS                  -->
+    <!-- ========================================== -->
+    <style>
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+        .hero-overlay {
+            background: radial-gradient(circle at center, rgba(5,5,5,0.3) 0%, #050505 100%);
+        }
+        
+        /* Estilização das Barras de Rolagem */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+        
+        .cursor::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+            font-weight: 300;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        
+        .input-minimalist {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 12px 0;
+            color: #fff;
+            transition: border-color 0.3s ease;
+            width: 100%;
+        }
+        .input-minimalist:focus {
+            outline: none;
+            border-bottom: 1px solid #fff;
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-white selection:text-black">
+
+    <!-- CABEÇALHO -->
+    <header x-data="{ mobileMenuOpen: false, scrolled: false }" 
+            @scroll.window="scrolled = (window.pageYOffset > 50)"
+            :class="{ 'glass-panel py-4': scrolled, 'bg-transparent py-6': !scrolled }"
+            class="fixed w-full top-0 z-50 transition-all duration-500 px-6 lg:px-12">
+        <div class="max-w-screen-2xl mx-auto flex justify-between items-center">
+            <a href="#" class="text-xl font-black tracking-tighter uppercase text-white flex items-center gap-2">
+                💠 Orbis<span class="text-white/50">Factor</span>
+            </a>
+            <nav class="hidden md:flex gap-10 items-center font-medium text-sm tracking-wide">
+                <a href="#sobre" class="text-white/70 hover:text-white transition-colors">Manifesto</a>
+                <a href="#portfolio" class="text-white/70 hover:text-white transition-colors">Obras</a>
+                <a href="#equipe" class="text-white/70 hover:text-white transition-colors">A Equipe</a>
+                <a href="#contato" class="px-5 py-2 rounded-full border border-white/20 hover:bg-white hover:text-black transition-all">Iniciar Projeto</a>
+            </nav>
+            <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden text-white text-2xl">
+                <i class="fa-solid" :class="mobileMenuOpen ? 'fa-xmark' : 'fa-bars-staggered'"></i>
+            </button>
+        </div>
+        <div x-show="mobileMenuOpen" x-transition.opacity class="fixed inset-0 bg-luxury/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8 text-2xl font-semibold md:hidden">
+            <a @click="mobileMenuOpen = false" href="#sobre" class="hover:text-white/50">Manifesto</a>
+            <a @click="mobileMenuOpen = false" href="#portfolio" class="hover:text-white/50">Obras</a>
+            <a @click="mobileMenuOpen = false" href="#equipe" class="hover:text-white/50">A Equipe</a>
+            <a @click="mobileMenuOpen = false" href="#contato" class="mt-4 px-8 py-3 rounded-full bg-white text-black text-lg">Iniciar Projeto</a>
+        </div>
+    </header>
+
+    <!-- SEÇÃO 1: HERO -->
+    <section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+        <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-50">
+            <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4">
+        </video>
+        <div class="absolute inset-0 hero-overlay z-0"></div>
+        <div class="relative z-10 text-center px-4 w-full max-w-5xl" data-aos="fade-up" data-aos-duration="1200">
+            <h1 class="text-5xl md:text-8xl lg:text-9xl font-black tracking-tighter mb-4 drop-shadow-2xl flex justify-center items-center gap-4">
+                <span class="text-orbisBlue text-4xl md:text-7xl">💠</span> ORBIS FACTOR
+            </h1>
+            <p class="text-xl md:text-3xl font-light tracking-wide text-white/80 h-12">
+                Sua marca em <span id="typewriter" class="font-semibold text-white cursor"></span>
+            </p>
+            <div class="mt-16 animate-bounce">
+                <a href="#sobre" class="text-white/50 hover:text-white transition-colors">
+                    <i class="fa-solid fa-arrow-down text-2xl"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 2: MANIFESTO -->
+    <section id="sobre" class="py-32 px-6 lg:px-12 relative">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="mb-16" data-aos="fade-right">
+                <h2 class="text-sm uppercase tracking-[0.3em] text-white/50 mb-2">O Manifesto</h2>
+                <p class="text-3xl md:text-5xl font-bold leading-tight max-w-3xl">
+                    Redefinindo os limites visuais. <br>
+                    <span class="text-white/40">A fusão exata entre a intuição humana e o poder computacional.</span>
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass-panel p-10 rounded-3xl md:col-span-2 h-[300px] flex flex-col justify-end relative overflow-hidden group">
+                    <img src="https://images.unsplash.com/photo-1633422501062-11c5e9f83652?auto=format&fit=crop&w=800&q=80" alt="IA Rendering" class="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:scale-105 transition-transform duration-700">
+                    <div class="relative z-20">
+                        <h3 class="text-2xl font-bold mb-2">Pós-Produção IA</h3>
+                        <p class="text-white/60 font-light">Algoritmos treinados para corrigir, colorir e renderizar em frações de segundo.</p>
+                    </div>
+                </div>
+                <div class="glass-panel p-10 rounded-3xl h-[300px] flex flex-col justify-between">
+                    <i class="fa-solid fa-eye text-4xl text-white/30"></i>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">Alta Retenção</h3>
+                        <p class="text-sm text-white/60 font-light">Arquitetura de cortes projetada para prender a atenção do primeiro ao último frame.</p>
+                    </div>
+                </div>
+                <div class="glass-panel p-10 rounded-3xl h-[300px] flex flex-col justify-between">
+                    <i class="fa-solid fa-bezier-curve text-4xl text-white/30"></i>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">Design Estático</h3>
+                        <p class="text-sm text-white/60 font-light">Panfletos digitais e materiais de luxo moldados para o alto valor.</p>
+                    </div>
+                </div>
+                <div class="glass-panel p-10 rounded-3xl md:col-span-2 h-[300px] flex items-center justify-center bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80')] bg-cover bg-center relative overflow-hidden">
+                    <div class="absolute inset-0 bg-black/70"></div>
+                    <div class="relative z-10 text-center">
+                        <h2 class="text-4xl font-black tracking-tighter mb-4">A ORDEM DO CAOS</h2>
+                        <a href="#portfolio" class="text-sm uppercase tracking-widest border-b border-white pb-1 hover:text-white/50 transition-all">Ver Portfólio</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SEÇÃO 3: PORTFÓLIO (SISTEMA DE ÁLBUNS)     -->
+    <!-- ========================================== -->
+    <section id="portfolio" class="py-32 px-6 lg:px-12 bg-white/[0.01]" 
+             x-data="portfolioData()" 
+             x-effect="document.body.style.overflow = (isGalleryOpen || isFullscreenOpen) ? 'hidden' : ''">
+             
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6" data-aos="fade-up">
+                <div>
+                    <h2 class="text-sm uppercase tracking-[0.3em] text-white/50 mb-2">Acervo Digital</h2>
+                    <h3 class="text-4xl md:text-5xl font-bold">Nossos Trabalhos</h3>
+                </div>
+            </div>
+
+            <!-- Botões de Filtro -->
+            <div class="flex flex-wrap gap-4 mb-12" data-aos="fade-up" data-aos-delay="100">
+                <button @click="filter = 'all'" :class="filter === 'all' ? 'bg-white text-black' : 'bg-transparent text-white border border-white/20'" class="px-6 py-2 rounded-full font-medium transition-all hover:bg-white hover:text-black">Todos</button>
+                <button @click="filter = 'video'" :class="filter === 'video' ? 'bg-white text-black' : 'bg-transparent text-white border border-white/20'" class="px-6 py-2 rounded-full font-medium transition-all hover:bg-white hover:text-black">Vídeos</button>
+                <button @click="filter = 'static'" :class="filter === 'static' ? 'bg-white text-black' : 'bg-transparent text-white border border-white/20'" class="px-6 py-2 rounded-full font-medium transition-all hover:bg-white hover:text-black">Estáticos (Panfletos)</button>
+                <button @click="filter = 'web'" :class="filter === 'web' ? 'bg-white text-black' : 'bg-transparent text-white border border-white/20'" class="px-6 py-2 rounded-full font-medium transition-all hover:bg-white hover:text-black">Web & Apps</button>
+            </div>
+
+            <!-- CAPAS DOS ÁLBUNS -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <div x-show="filter === 'all' || filter === 'video'" x-transition.opacity 
+                     @click="openGallery('videos_comerciais', 'Vídeos Comerciais')" 
+                     class="relative rounded-2xl overflow-hidden cursor-pointer group h-80">
+                    <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=600&q=80" alt="Vídeos Promocionais" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center">
+                        <i class="fa-solid fa-folder-open text-4xl text-white mb-2"></i>
+                        <span class="font-bold tracking-widest mt-2">VÍDEOS COMERCIAIS</span>
+                        <span class="text-sm text-white/50 mt-1">Ver Álbum</span>
+                    </div>
+                </div>
+
+                <div x-show="filter === 'all' || filter === 'static'" x-transition.opacity 
+                     @click="openGallery('panfletos', 'Panfletos Digitais')" 
+                     class="relative rounded-2xl overflow-hidden cursor-pointer group h-80">
+                    <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=600&q=80" alt="Panfleto Digital" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center">
+                        <i class="fa-solid fa-folder-open text-4xl text-white mb-2"></i>
+                        <span class="font-bold tracking-widest mt-2">PANFLETOS DIGITAIS</span>
+                        <span class="text-sm text-white/50 mt-1">Ver Álbum</span>
+                    </div>
+                </div>
+
+                <div x-show="filter === 'all' || filter === 'web'" x-transition.opacity 
+                     @click="openGallery('apps', 'UI/UX Aplicativos')" 
+                     class="relative rounded-2xl overflow-hidden cursor-pointer group h-80">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="Layout de App" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center">
+                        <i class="fa-solid fa-folder-open text-4xl text-white mb-2"></i>
+                        <span class="font-bold tracking-widest mt-2">UI/UX APP</span>
+                        <span class="text-sm text-white/50 mt-1">Ver Álbum</span>
+                    </div>
+                </div>
+
+                <div x-show="filter === 'all' || filter === 'static'" x-transition.opacity 
+                     @click="openGallery('social_media', 'Posts Redes Sociais')" 
+                     class="relative rounded-2xl overflow-hidden cursor-pointer group h-80">
+                    <img src="https://images.unsplash.com/photo-1616469829581-73993eb86b02?auto=format&fit=crop&w=600&q=80" alt="Social Media" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center">
+                        <i class="fa-solid fa-folder-open text-4xl text-white mb-2"></i>
+                        <span class="font-bold tracking-widest mt-2">POST REDES SOCIAIS</span>
+                        <span class="text-sm text-white/50 mt-1">Ver Álbum</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- JANELA FLUTUANTE NÍVEL 1: GRADE DO ÁLBUM                            -->
+        <!-- =================================================================== -->
+        <template x-teleport="body">
+            <!-- @click.self corrigido para fechar SÓ a grade ao clicar fora dela -->
+            <div x-show="isGalleryOpen" 
+                 class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-md p-4 md:p-10"
+                 @click.self="isGalleryOpen = false"
+                 x-transition.opacity style="display: none;">
+                
+                <div class="bg-luxury w-full max-w-7xl h-full max-h-[90vh] rounded-3xl border border-white/10 flex flex-col relative shadow-2xl overflow-hidden">
+                    
+                    <div class="p-6 border-b border-white/10 flex justify-between items-center bg-white/5">
+                        <div>
+                            <span class="text-orbisBlue text-xs font-bold uppercase tracking-widest">Álbum de Projetos</span>
+                            <h3 x-text="galleryTitle" class="text-2xl md:text-3xl font-black tracking-tighter uppercase mt-1"></h3>
+                        </div>
+                        <button @click="isGalleryOpen = false" class="text-white/50 hover:text-white text-4xl transition-colors">&times;</button>
+                    </div>
+
+                    <div class="p-6 overflow-y-auto flex-1">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <template x-for="item in currentGallery">
+                                <div @click="openFullscreen(item)" class="cursor-pointer group relative rounded-xl overflow-hidden aspect-[4/5] bg-white/5 border border-white/5 hover:border-white/20 transition-all">
+                                    
+                                    <template x-if="item.type === 'image'">
+                                        <img :src="item.url" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                    </template>
+                                    
+                                    <template x-if="item.type === 'video'">
+                                        <div class="w-full h-full relative">
+                                            <img :src="item.thumb" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-70">
+                                            <div class="absolute inset-0 flex items-center justify-center">
+                                                <div class="w-16 h-16 rounded-full bg-orbisBlue/90 flex items-center justify-center shadow-[0_0_20px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
+                                                    <i class="fa-solid fa-play text-black text-2xl ml-1"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </template>
+
+                                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6 pointer-events-none">
+                                        <span class="text-sm font-bold tracking-widest text-white drop-shadow-md">CLIQUE PARA AMPLIAR</span>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <!-- =================================================================== -->
+        <!-- JANELA FLUTUANTE NÍVEL 2: TELA CHEIA (ZOOM / VÍDEO)                 -->
+        <!-- =================================================================== -->
+        <template x-teleport="body">
+            <!-- @click.self configurado para fechar APENAS a tela cheia, deixando a grade intacta -->
+            <div x-show="isFullscreenOpen" x-data="{ zoomed: false }"
+                 class="fixed inset-0 z-[110] flex items-center justify-center bg-black/98 backdrop-blur-2xl p-4"
+                 @click.self="isFullscreenOpen = false; zoomed = false"
+                 x-transition.opacity style="display: none;">
+                
+                <!-- NOVO BOTÃO: VOLTAR À GRADE -->
+                <button @click="isFullscreenOpen = false; zoomed = false" class="absolute top-6 left-6 md:top-8 md:left-8 text-white/50 hover:text-orbisBlue flex items-center gap-2 text-sm font-bold tracking-widest uppercase z-50 transition-colors">
+                    <i class="fa-solid fa-arrow-left"></i> Voltar à Grade
+                </button>
+
+                <!-- BOTÃO FECHAR (X) -->
+                <button @click="isFullscreenOpen = false; zoomed = false" class="absolute top-4 right-6 md:top-6 md:right-8 text-white/50 hover:text-white text-5xl z-50 transition-colors">&times;</button>
+                
+                <div class="relative w-full max-w-7xl h-full flex items-center justify-center" @click.self="isFullscreenOpen = false; zoomed = false">
+                    
+                    <template x-if="activeMedia?.type === 'video'">
+                        <div class="w-full max-w-5xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+                            <iframe :src="'https://www.youtube.com/embed/' + activeMedia.url + '?autoplay=1'" class="w-full h-full" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                        </div>
+                    </template>
+
+                    <template x-if="activeMedia?.type === 'image'">
+                        <div class="relative w-full h-full flex items-center justify-center overflow-hidden">
+                            <img :src="activeMedia.url" 
+                                 @click="zoomed = !zoomed"
+                                 :class="zoomed ? 'scale-150 cursor-zoom-out' : 'scale-100 cursor-zoom-in'"
+                                 class="max-w-full max-h-[90vh] object-contain transition-transform duration-500 ease-out drop-shadow-2xl" 
+                                 alt="Obra Ampliada">
+                            
+                            <div x-show="!zoomed" class="absolute bottom-10 bg-black/50 backdrop-blur-md px-6 py-2 rounded-full text-xs tracking-widest text-white/70 pointer-events-none">
+                                CLIQUE NA IMAGEM PARA DAR ZOOM
+                            </div>
+                        </div>
+                    </template>
+
+                </div>
+            </div>
+        </template>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SEÇÃO 4: EQUIPE                            -->
+    <!-- ========================================== -->
+    <section id="equipe" class="py-32 px-6 lg:px-12 relative">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-sm uppercase tracking-[0.3em] text-white/50 mb-2">A Equipe</h2>
+                <h3 class="text-4xl md:text-5xl font-bold">Mentes da Orbis</h3>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Membro 1 -->
+                <div class="group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="glass-panel aspect-[3/4] rounded-2xl overflow-hidden relative mb-4">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Otil Neto" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500">
+                    </div>
+                    <h4 class="text-xl font-bold">Otil Neto</h4>
+                    <p class="text-xs uppercase tracking-widest text-white/50">Direção Técnica & IA</p>
+                </div>
+                
+                <!-- Membro 2 -->
+                <div class="group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="glass-panel aspect-[3/4] rounded-2xl overflow-hidden relative mb-4">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Thais Helena" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500">
+                    </div>
+                    <h4 class="text-xl font-bold">Thais Helena</h4>
+                    <p class="text-xs uppercase tracking-widest text-white/50">Direção de Arte & UX</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SEÇÃO 5: FORMULÁRIO DE CONTATO             -->
+    <!-- ========================================== -->
+    <section id="contato" class="py-32 px-6 lg:px-12 bg-white/[0.02] border-t border-white/5">
+        <div class="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 overflow-hidden">
+            
+            <div data-aos="fade-right">
+                <h2 class="text-5xl md:text-7xl font-black tracking-tighter mb-6">INICIE O<br>PROJETO.</h2>
+                <p class="text-white/60 font-light text-lg mb-8 max-w-md">
+                    Preencha os dados e nossa equipe de curadoria analisará sua marca para uma proposta exclusiva.
+                </p>
+                <div class="flex gap-6 text-2xl">
+                    <a href="#" class="text-white/40 hover:text-white transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="text-white/40 hover:text-white transition-colors"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div data-aos="fade-left">
+                <!-- Substitua o SEU_ID_AQUI pelo código do seu Formspree -->
+                <form action="https://formspree.io/f/SEU_ID_AQUI" method="POST" class="flex flex-col gap-8 w-full">
+                    <div class="flex flex-col w-full">
+                        <label class="text-xs uppercase tracking-widest text-white/40 mb-1">Como devemos chamá-lo?</label>
+                        <input type="text" name="nome" required class="input-minimalist placeholder-white/20 w-full" placeholder="Seu Nome ou Empresa">
+                    </div>
+                    <div class="flex flex-col w-full">
+                        <label class="text-xs uppercase tracking-widest text-white/40 mb-1">Onde enviamos a proposta?</label>
+                        <input type="email" name="email" required class="input-minimalist placeholder-white/20 w-full" placeholder="E-mail Corporativo">
+                    </div>
+                    <div class="flex flex-col w-full">
+                        <label class="text-xs uppercase tracking-widest text-white/40 mb-1">Qual o objetivo?</label>
+                        <textarea name="mensagem" rows="3" required class="input-minimalist placeholder-white/20 resize-none w-full" placeholder="Conte-nos sobre o projeto..."></textarea>
+                    </div>
+                    <button type="submit" class="self-start mt-4 px-10 py-4 bg-white text-black font-bold uppercase tracking-widest text-sm hover:bg-gray-200 transition-colors rounded-none flex items-center gap-3 group">
+                        Enviar Solicitação
+                        <i class="fa-solid fa-arrow-right transform group-hover:translate-x-2 transition-transform"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- RODAPÉ (FOOTER) COM E-MAIL                 -->
+    <!-- ========================================== -->
+    <footer class="py-10 px-6 lg:px-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+        
+        <!-- Logo do Rodapé -->
+        <div class="text-xl font-black tracking-tighter uppercase text-white">
+            💠 Orbis<span class="text-white/50">Factor</span>
+        </div>
+
+        <!-- E-mail da Empresa (Restauração solicitada) -->
+        <a href="mailto:contato@orbisfactor.com.br" class="text-white/50 hover:text-white transition-colors flex items-center gap-2 text-sm tracking-widest uppercase">
+            <i class="fa-solid fa-envelope text-orbisBlue"></i> contato@orbisfactor.com.br
+        </a>
+
+        <!-- Direitos Autorais -->
+        <div class="text-xs text-white/30 tracking-widest uppercase">
+            &copy; <span id="year"></span> Orbis Factor. Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <!-- ========================================== -->
+    <!-- BOTÃO FLUTUANTE DO WHATSAPP                -->
+    <!-- ========================================== -->
+    <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" class="fixed bottom-8 right-8 z-[90] flex items-center justify-center w-14 h-14 bg-[#25D366] rounded-full text-white text-3xl shadow-[0_4px_20px_rgba(37,211,102,0.4)] hover:scale-110 transition-transform duration-300">
+        <span class="absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-75 animate-ping"></span>
+        <i class="fa-brands fa-whatsapp relative z-10"></i>
+    </a>
+
+    <!-- ========================================== -->
+    <!-- SCRIPTS MÁGICOS (AOS, TYPEWRITER E ALPINE) -->
+    <!-- ========================================== -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // 1. Inicia Animações e Typewriter
+        document.addEventListener("DOMContentLoaded", function() {
+            // Animação de entrada dos elementos
+            AOS.init({ once: true, offset: 50, duration: 800 });
+            
+            // Ano automático no rodapé
+            document.getElementById("year").textContent = new Date().getFullYear();
+
+            // Lógica do Letreiro
+            const frases =["VÍDEOS DE ALTA RETENÇÃO", "PANFLETOS DIGITAIS", "WEBSITES MODERNOS", "DESIGN DE IMPACTO"];
+            let fraseAtual = 0, letraAtual = 0;
+            const elementoTexto = document.getElementById("typewriter");
+
+            function digitar() {
+                if (letraAtual < frases[fraseAtual].length) {
+                    elementoTexto.textContent += frases[fraseAtual].charAt(letraAtual);
+                    letraAtual++;
+                    setTimeout(digitar, 80); 
+                } else setTimeout(apagar, 2500);
+            }
+            function apagar() {
+                if (letraAtual > 0) {
+                    elementoTexto.textContent = frases[fraseAtual].substring(0, letraAtual - 1);
+                    letraAtual--;
+                    setTimeout(apagar, 40); 
+                } else {
+                    fraseAtual++;
+                    if (fraseAtual >= frases.length) fraseAtual = 0; 
+                    setTimeout(digitar, 500); 
+                }
+            }
+            setTimeout(digitar, 1000);
+        });
+
+        // =================================================================
+        // "BANCO DE DADOS" DO PORTFÓLIO (FÁCIL DE EDITAR PARA INICIANTES)
+        // =================================================================
+        function portfolioData() {
+            return {
+                filter: 'all',
+                isGalleryOpen: false,     // Controla se a grade flutuante está aberta
+                isFullscreenOpen: false,  // Controla se a imagem/vídeo está em tela cheia
+                galleryTitle: '',         // Título do álbum atual
+                currentGallery:[],       // Lista de itens do álbum atual
+                activeMedia: null,        // Qual imagem/vídeo está aberto na tela cheia agora
+
+                // Aqui ficam todas as imagens e vídeos de cada álbum!
+                obras: {
+                    
+                    // Álbum 1: Panfletos
+                    'panfletos':[
+                        { type: 'image', url: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=1000&q=100' },
+                        { type: 'image', url: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&w=1000&q=100' },
+                        { type: 'image', url: 'https://images.unsplash.com/photo-1613400585141-945763a83017?auto=format&fit=crop&w=1000&q=100' },
+                        { type: 'image', url: 'https://images.unsplash.com/photo-1572044162444-ad60f128bdea?auto=format&fit=crop&w=1000&q=100' }
+                    ],
+
+                    // Álbum 2: Vídeos Comerciais
+                    'videos_comerciais':[
+                        // Para vídeos, coloque o ID do YouTube no 'url' e um link de imagem de capa no 'thumb'
+                        { type: 'video', url: 'dQw4w9WgXcQ', thumb: 'https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=800&q=80' },
+                        { type: 'video', url: 'tgbNymZ7vqY', thumb: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=800&q=80' }
+                    ],
+
+                    // Álbum 3: Aplicativos
+                    'apps':[
+                        { type: 'image', url: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=100' },
+                        { type: 'image', url: 'https://images.unsplash.com/photo-1607252656733-fd742af1586c?auto=format&fit=crop&w=1000&q=100' }
+                    ],
+
+                    // Álbum 4: Redes Sociais
+                    'social_media':[
+                        { type: 'image', url: 'https://images.unsplash.com/photo-1616469829581-73993eb86b02?auto=format&fit=crop&w=1000&q=100' },
+                        { type: 'image', url: 'https://images.unsplash.com/photo-1563986768494-4dee2763ff0f?auto=format&fit=crop&w=1000&q=100' },
+                        { type: 'image', url: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=1000&q=100' }
+                    ]
+                },
+
+                // Função que abre a grade flutuante (Nível 1)
+                openGallery(id, title) {
+                    // Puxa as imagens do álbum escolhido. Se não achar, deixa vazio []
+                    this.currentGallery = this.obras[id] ||[];
+                    this.galleryTitle = title;
+                    this.isGalleryOpen = true;
+                },
+
+                // Função que abre a imagem ou vídeo sozinho em tela cheia (Nível 2)
+                openFullscreen(item) {
+                    this.activeMedia = item;
+                    this.isFullscreenOpen = true;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
